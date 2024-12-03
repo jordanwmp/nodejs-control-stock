@@ -1,0 +1,29 @@
+<div class="auth center_vertical_horizontal">
+    <h1>
+        Login in <span class="auth__highlight">Node Stock</span>
+    </h1>
+    <form class="auth__form" action="/access" method="POST">
+            <div class="auth__form-group">
+                <label class="auth__label" for="email">E-mail</label>
+                <input 
+                    class="auth__input"
+                    type="text" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter your e-mail"
+                    />
+            </div>
+            <div class="auth__form-group">
+                <label class="auth__label" for="password">Password</label>
+                <input 
+                    class="auth__input"
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter your password"/>
+            </div>
+            <button type="submit" class="btn btn--primary">
+                Enter
+            </button>
+        </form>
+</div>

@@ -38,19 +38,23 @@ app.use(session(SESSION_CONFIG))
 //flash messages
 app.use(flash())
 
-//public path
-app.use(express.static('public'))
-
 //set session to response
 app.use((req, res, next) => {
-    
+    console.log('sesion', req.session)
     if(req.session.userid)
     {
-        req.locals.session = req.session
+        res.locals.session = req.session
     }
 
     next()
 })
+
+//ROUTES
+const UserController = require('./controllers/UserController')
+const userRoutes = require('./routers/userRoutes')
+
+//app.use('/', UserController.login)
+app.use('/', userRoutes)
 
 connection
     .sync()

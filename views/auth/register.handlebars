@@ -1,0 +1,65 @@
+<div class="auth auth--register center_vertical_horizontal">
+    <h1>
+       Create Account
+    </h1>
+    <form class="auth__form" action="/register" method="POST">
+            <div class="auth__form-group">
+                <label class="auth__label" for="firstname">First name</label>
+                <input 
+                    class="auth__input"
+                    type="text" 
+                    id="firstname" 
+                    name="firstname" 
+                    placeholder="Enter your first name"
+                    required
+                    />
+            </div>
+             <div class="auth__form-group">
+                <label class="auth__label" for="lastname">Last name</label>
+                <input 
+                    class="auth__input"
+                    type="text" 
+                    id="lastname" 
+                    name="lastname" 
+                    placeholder="Enter your last name"
+                    required
+                    />
+            </div>
+            <div class="auth__form-group">
+                <label class="auth__label" for="email">E-mail</label>
+                <input 
+                    class="auth__input"
+                    type="text" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter your e-mail"
+                    required
+                    />
+            </div>
+            <div class="auth__form-group">
+                <label class="auth__label" for="password">Password</label>
+                <input 
+                    class="auth__input"
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter your password"
+                    required
+                    />
+            </div>
+            <div class="auth__form-group">
+                <label class="auth__label" for="confirmPassword">Confir password</label>
+                <input 
+                    class="auth__input"
+                    type="password" 
+                    id="confirmPassword" 
+                    name="confirmPassword" 
+                    placeholder="Confirm password"
+                    required
+                    />
+            </div>
+            <button type="submit" class="btn btn--primary">
+                Create account
+            </button>
+        </form>
+</div>

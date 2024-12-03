@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #05ffa1;
+    font-weight: bold;
+    /* font-size: 1.2em; */
+}
+
+/* CSS PARA NAVBAR E CONTAINER */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f2f2f2;
+}
+
+.navbar__logo img {
+    max-width: 52px;
+}
+
+.navbar__list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar__item {
+    /* Estilos para itens da navbar */
+}
+
+.navbar__link {
+    color: #05ffa1;
+    font-weight: bold;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.message{
+    color: #666;
+    padding: 12px 24px;
+    vertical-align: center;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 5px;
+    background-color: #9bffd9;
+}
+
+/* CSS PARA FORMULÁRIO DE LOGIN E REGISTRO */
+
+.auth {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 24px;
+    background: #f2f2f2;
+    border-radius: 8px;
+}
+
+.auth__highlight {
+    color: #05ffa1;
+    font-weight: bolder;
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.auth__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.auth__label {
+    font-weight: bold;
+}
+
+.auth__input {
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    padding: 0px 10px;
+}
+
+.btn {
+    background-color: #f2f2f2;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background-color: #05ffa1;
+}
+
+.center_vertical_horizontal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/**** CSS FOR REGISTER FORM ****/
+
+.auth--register{
+    transform: translate(-50%, -45%);
+}
