@@ -1,0 +1,18 @@
+<div class="myproducts">
+
+    <h1 class="myproducts__title">My products</h1>
+
+    <ul class="myproducts__container">
+        {{#each products}}
+        <li class="myproducts__item">
+            <a href="#">
+                <img src="/products/cellphone.jpg" />
+                <span class="myproducts__item-title">{{this.product}}</span>
+                <span class="myproducts__item-description">{{this.description}}</span>
+                <span class="myproducts__item-price">R${{this.price}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+
+</div>

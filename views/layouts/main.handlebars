@@ -14,33 +14,49 @@
             <img src="/images/logo-256.png" alt="Node.js Stock Manager" />
         </a>
         <ul class="navbar__list">
-            <li class="navbar__item">
-                <a class="navbar__link" href="#">Products</a>
-            </li>
-            <li class="navbar__item">
-                <a class="navbar__link" href="#">Perfil</a>
-            </li>
-            <li class="navbar__item">
-                <a class="navbar__link" href="/register">SignUp</a>
-            </li>
-            <li class="navbar__item">
-                <a class="navbar__link" href="/login">SignIn</a>
-            </li>
+
+            {{#if session.userid}}
+                <li class="navbar__item">
+                    <a class="navbar__link" href="#">Products</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="#">Add Product</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="#">Perfil</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="/auth/logout">Logout</a>
+                </li>
+            {{else}}
+                <li class="navbar__item">
+                    <a class="navbar__link" href="/auth/register">Sign up</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="/auth/login">Sign in</a>
+                </li>
+            {{/if}}
         </ul>
     </nav>
+
     <div class="container">
         {{#if messages.message}}
-            <div class="message">
-                {{messages.message}}
-            </div>
+        <div class="message">
+            {{messages.message}}
+        </div>
         {{/if}}
         {{#if message}}
-            <div class="message">
-                {{message}}
-            </div>
+        <div class="message">
+            {{message}}
+        </div>
         {{/if}}
         {{{body}}}
     </div>
+
+    <footer>
+        <span>&copy; NodeStock</span>
+    </footer>
+
 
 </body>
 

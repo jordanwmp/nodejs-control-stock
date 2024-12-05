@@ -2,6 +2,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: Roboto, sans-serif;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -44,11 +48,12 @@ a {
 }
 
 .container {
+    flex: 1;
     width: 80%;
     margin: auto;
 }
 
-.message{
+.message {
     color: #666;
     padding: 12px 24px;
     vertical-align: center;
@@ -68,6 +73,10 @@ a {
     padding: 24px;
     background: #f2f2f2;
     border-radius: 8px;
+}
+
+.auth .auth__title{
+    text-align: center;
 }
 
 .auth__highlight {
@@ -118,11 +127,83 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    flex: 1;
 }
-
 
 /**** CSS FOR REGISTER FORM ****/
 
-.auth--register{
-    transform: translate(-50%, -45%);
+.auth--register {
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+}
+
+/***** CSS FOR PRODUCTS ******/
+
+.myproducts .myproducts__title {
+    color: #292929;
+    font-size: 1.5em;
+}
+
+.myproducts .myproducts__container {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.myproducts .myproducts__item {
+    max-width: 250px;
+    text-align: center;
+}
+
+.myproducts .myproducts__item a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.myproducts__item a img {
+    width: 100%;
+    max-width: 300px;
+}
+
+.myproducts__item-title,
+.myproducts__item-price {
+    color: #292929;
+    font-size: 1.5em;
+}
+
+.myproducts__item-description {
+    font-size: 1em;
+    color: #666;
+}
+
+.myproducts .myproducts__item a:hover .myproducts__item-title
+{
+    font-size: 1.7em;
+}
+
+
+/****** CSS FOR FOOTER ******/
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #f2f2f2;
+    width: 100%;
+    /* position: absolute; 
+    bottom: 0; */
+}
+
+footer span{
+    color: #666;
+    font-size: 0.8em;
 }

@@ -32,10 +32,10 @@ class UserController {
 
         //session
         req.session.userid = user.id
-        req.flash('message', 'Login done')
+        // req.flash('message', 'Login done')
 
         req.session.save(()=>{
-            res.redirect('/login')
+            res.redirect('/products/all')
         })
     }
 
@@ -89,7 +89,7 @@ class UserController {
 
     static logout(req, res){
         req.session.destroy()
-        res.redirect('/login')
+        res.redirect('/auth/login')
     }
 }
 

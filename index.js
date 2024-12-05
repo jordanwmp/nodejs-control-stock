@@ -51,10 +51,12 @@ app.use((req, res, next) => {
 
 //ROUTES
 const UserController = require('./controllers/UserController')
-const userRoutes = require('./routers/userRoutes')
 
-//app.use('/', UserController.login)
-app.use('/', userRoutes)
+const userRoutes = require('./routers/userRoutes')
+const productsRouters = require('./routers/productsRoutes')
+// app.use('/', UserController.login)
+app.use('/auth', userRoutes)
+app.use('/products', productsRouters)
 
 connection
     .sync()

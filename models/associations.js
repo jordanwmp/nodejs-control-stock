@@ -26,6 +26,10 @@ Products.belongsTo(Supplies, { foreignKey: 'supplier_id' })
 Products.hasMany(Images, { foreignKey: 'product_id' })
 Images.belongsTo(Products, { foreignKey: 'product_id' })
 
+//PRODUCT USER RELATIONSHIP
+Users.hasMany(Products, {foreignKey: 'user_id'})
+Products.belongsTo(Users, {foreignKey: 'user_id'})
+
 module.exports = {
     Categories,
     Supplies,
