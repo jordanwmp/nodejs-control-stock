@@ -72,6 +72,9 @@ ALTER TABLE images CHANGE image_url image VARCHAR(255) NOT NULL;
 ALTER TABLE users CHANGE passwrod password VARCHAR(255) NOT NULL;
 INSERT INTO users (firstname, lastname, password, email, createdAt) VALUES ('Jordan', 'Willian', '1234', 'jordan@node.com', '2024-11-26 16:37:00');
 
+SELECT * FROM users;
+DELETE FROM users WHERE id = 1;
+
 INSERT INTO categories (category, description, createdAt) VALUE ('Móveis', 'Cadeiras, mesas, sofás, estantes e outros itens de mobília para diversos ambientes da casa.', '2024-01-15 10:30:00');
 INSERT INTO categories (category, description, createdAt) VALUES ('Iluminação', 'Luminárias, abajures, pendentes, lustres e outros itens de iluminação para interiores e exteriores.', '2024-02-10 14:45:00');
 INSERT INTO categories (category, description, createdAt) VALUES ('Decoração', 'Quadros, vasos, esculturas, espelhos e outros itens decorativos para embelezar ambientes.', '2024-03-05 09:20:00');  
@@ -105,3 +108,29 @@ INSERT INTO products (product, description, price, category_id, supplier_id, cre
 ('Almofada Decorativa', 'Almofada decorativa com estampas modernas e enchimento confortável, ideal para sofás e camas.', 60.00, 3, 3, '2024-11-25 15:00:00');
 
 SELECT * FROM products;
+
+ALTER TABLE products
+ADD COLUMN user_id INT NOT NULL DEFAULT 4,
+ADD CONSTRAINT fk_users
+FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE products
+ADD COLUMN updatedAt TIMESTAMP NOT NULL;
+
+ALTER TABLE supplies
+ADD COLUMN updatedAt TIMESTAMP NOT NULL;
+
+ALTER TABLE images
+ADD COLUMN updatedAt TIMESTAMP NOT NULL;
+
+ALTER TABLE contacts
+ADD COLUMN updatedAt TIMESTAMP NOT NULL;
+
+ALTER TABLE categories
+ADD COLUMN updatedAt TIMESTAMP NOT NULL;
+
+ALTER TABLE addresses
+ADD COLUMN updatedAt TIMESTAMP NOT NULL;
+
+ALTER TABLE images
+CHANGE COLUMN createAt createdAt TIMESTAMP NOT NULL;

@@ -1,0 +1,94 @@
+<div class="auth auth__form--register">
+
+    <h1>
+        Add product
+    </h1>
+
+    <form class="auth__form" action="/products/save" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" value="{{session.userid}}" />
+
+        <div class="auth__row">
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="product">Product</label>
+                <input class="auth__input" type="text" id="product" name="product" placeholder="Enter product name"
+                    required />
+            </div>
+
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="price">Price</label>
+                <input class="auth__input" type="number" id="price" name="price" placeholder="Price" required />
+            </div>
+        </div>
+
+        <div class="auth__row">
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="price">Category</label>
+                <select class="auth__input" name="category_id">
+                    {{#each categories}}
+                    <option value="{{this.id}}">{{this.category}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="price">Supplier</label>
+                <select class="auth__input" name="supplier_id">
+                    {{#each suppliers}}
+                    <option value="{{this.id}}">{{this.supplier}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+
+        <div class="auth__row">
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="description">Description</label>
+                <textarea class="auth__input auth__input--textarea" type="text" id="description" name="description"
+                    placeholder="Description" rows="5" required></textarea>
+            </div>
+        </div>
+
+        <div class="imageupload">
+            <label class="auth__label">Add ultil 5 images</label>
+            <label class="imageupload__label" for="images">+</label>
+            <input class="imageupload__input" id="images" name="images" type="file" accept="image/*" multiple>
+        </div>
+
+        <div id="preview"></div>
+
+        <button type="submit" class="btn btn--primary btn--register">
+            Add product
+        </button>
+
+    </form>
+</div>
+
+<script>
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '';
+    let index = 0;
+    document.getElementById('images').addEventListener('change',
+        function (event) {
+            if(index >= 5)
+            {
+                alert('Max number of images achieved')
+                return;
+            }
+
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '150px';
+                    img.style.margin = '5px';
+                    preview.appendChild(img);
+                    index++;
+                };
+                reader.readAsDataURL(file);
+            }
+        }); 
+</script>
