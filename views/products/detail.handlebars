@@ -1,0 +1,55 @@
+<div class="product">
+    <div class="product__images">
+        <div class="product__images__main-image">
+            <img class="main-image" />
+        </div>
+        <div class="product__images__carousel"></div>
+    </div>
+    <div class="product__info">
+        <h1 class="title__product">{{product.product}}</h1>
+        <p>{{product.description}}</p>
+        <span class="price__product">US${{product.price}}</span>
+
+        <div class="btn-container">
+            <button class="btn btn-info">Update</button>
+            <button class="btn btn-danger">Delete</button>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+    const createImage = (src, className) => {
+        const img = document.createElement('img')
+        img.style.cursor = 'pointer'
+        img.classList.add(className)
+        img.src = `/uploads/${src}`
+        return img
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const productImages = {{{ json images }}}
+    
+        const mainImage = document.querySelector(".main-image")
+    const carrouselContainer = document.querySelector(".product__images__carousel")
+
+    mainImage.src = `/uploads/${productImages[0].image}`
+
+    productImages.forEach((img) => {
+        carrouselContainer.appendChild(createImage(img.image, 'product__images__item'))
+    })
+
+    console.log(carrouselContainer)
+
+    carrouselContainer.querySelectorAll('img').forEach((img) => {
+        img.addEventListener('click', (e) => {
+            console.log(e)
+            mainImage.src = e.target.src
+        })
+    }) 
+
+    })
+
+</script>

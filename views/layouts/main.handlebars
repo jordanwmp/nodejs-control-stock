@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Manager</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
     <nav class="navbar">
         <a class="navbar__logo">
-            <img src="/images/logo-256.png" alt="Node.js Stock Manager" />
+            <img src="/images/logo.png" alt="Node.js Stock Manager" />
         </a>
         <ul class="navbar__list">
 
             {{#if session.userid}}
                 <li class="navbar__item">
-                    <a class="navbar__link" href="#">Products</a>
+                    <a class="navbar__link" href="/products/all">Products</a>
                 </li>
                 <li class="navbar__item">
                     <a class="navbar__link" href="/products/add">Add Product</a>

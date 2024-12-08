@@ -6,11 +6,12 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: #f9f9f9;
 }
 
 a {
     text-decoration: none;
-    color: #05ffa1;
+    color: #14A44D;
     font-weight: bold;
     /* font-size: 1.2em; */
 }
@@ -22,7 +23,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    background-color: #f2f2f2;
+    background-color: #14A44D;
 }
 
 .navbar__logo img {
@@ -43,7 +44,7 @@ a {
 }
 
 .navbar__link {
-    color: #05ffa1;
+    color: #fff;
     font-weight: bold;
 }
 
@@ -64,6 +65,10 @@ a {
     background-color: #9bffd9;
 }
 
+.message .message__link{
+    color: #54B4D3;
+}
+
 /* CSS PARA FORMULÁRIO DE LOGIN E REGISTRO */
 
 .auth {
@@ -80,7 +85,7 @@ a {
 }
 
 .auth__highlight {
-    color: #05ffa1;
+    color: #14A44D;
     font-weight: bolder;
 }
 
@@ -123,7 +128,15 @@ a {
 }
 
 .btn--primary {
-    background-color: #05ffa1;
+    background-color: #14A44D;
+}
+
+.btn-danger{
+    background-color: #DC4C64;
+}
+
+.btn-info{
+    background-color: #54B4D3;
 }
 
 .center_vertical_horizontal {
@@ -230,6 +243,54 @@ a {
 .btn--register{
     max-width: 200px;
     width: 100%;
+}
+
+/******** CSS FOR DETAIL PRODUCT   *****/
+
+.product{
+    display: flex;
+    padding: 24px;
+    gap: 2em;
+}
+
+.product__images{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.main-image{
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+.product__images__item, #main-image
+{
+    width: 70px;
+    height: 70px;
+}
+
+.product__images__carousel{
+    display: flex;
+    gap: 0.3em;
+}
+
+.product__info{
+    display: flex;
+    flex-direction: column;
+}
+
+.title__product{
+    margin: 0;
+}
+
+.price__product
+{
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 /****** CSS FOR FOOTER ******/

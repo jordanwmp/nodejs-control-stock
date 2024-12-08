@@ -18,18 +18,24 @@ class ProductsController {
         const user = await Users.findOne({
             where: { id: userId },
             include: [{
-                model: Products
+                model: Products,
+                include: [
+                    {
+                        model: Images
+                    }
+                ]
             }],
             plain: true
         })
 
-        console.log('user ', user)
-
         const products = user.Products.map((res) => {
-            return res.dataValues
+            //return res.dataValues
+            const productData = res.dataValues
+            productData.image = res.Images.map(image => image.dataValues.image)[0]
+            return productData
         })
 
-        console.log('products '.products)
+        // console.log('PRODUCTS ', products)
 
         let empty = true
         if (products.length != 0) {
@@ -46,9 +52,6 @@ class ProductsController {
 
         suppliers = suppliers.map(supplier => supplier.get({ plain: true }))
         categories = categories.map(category => category.get({ plain: true }))
-
-        console.log(suppliers)
-        console.log(categories)
 
         res.render('products/add', { suppliers, categories })
     }
@@ -75,18 +78,54 @@ class ProductsController {
                 user_id
             })
 
-            if(req.files && req.files.length > 0)
-            {
+            if (req.files && req.files.length > 0) {
                 const imagePaths = req.files.map(file => file.filename)
                 const imageRecords = imagePaths.map(name => ({
                     product_id: newProduct.id,
                     image: name
-                })) 
+                }))
                 await Images.bulkCreate(imageRecords)
             }
+            req.flash('message', 'Product added successfully')
             res.redirect('/products/all')
         } catch (error) {
             console.log('Error on save products and images ', error)
+        }
+    }
+
+    static async detail(req, res) {
+
+        const productId =  23//req.params.id
+        console.log('P ID ', JSON.stringify(productId))
+
+        try {
+            let images = []
+            const products = await Products.findOne(
+                { 
+                    where: { id: productId }, 
+                    include: [
+                        {
+                            model: Images
+                        }
+                    ],
+                    plain: true 
+            })
+            
+            const product = products.dataValues
+            console.log('PRODUCT ', product)
+           
+            if (product) { 
+                // Mapear os objetos de imagens associados ao produto 
+                images = product.Images.map((img) => img.dataValues); 
+                console.log('IMAGES ', images); 
+            } else { 
+                console.log('Product not found'); 
+            }
+
+            res.render('products/detail', { product, images })
+
+        } catch (error) {
+            console.log('Error on get detail page ', error)
         }
     }
 }

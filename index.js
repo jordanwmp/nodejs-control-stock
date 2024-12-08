@@ -1,5 +1,6 @@
 const express = require('express')
 const { engine } = require('express-handlebars')
+const handlebars = require('handlebars')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
@@ -15,6 +16,10 @@ app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public'))
+
+handlebars.registerHelper('json', function(contex){
+    return JSON.stringify(contex)
+})
 
 //session middleware config
 const SESSION_CONFIG = {

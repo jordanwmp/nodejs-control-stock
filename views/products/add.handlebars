@@ -4,9 +4,10 @@
         Add product
     </h1>
 
+    <!-- enctype="multipart/form-data" -->
     <form class="auth__form" action="/products/save" method="POST" enctype="multipart/form-data">
 
-        <input type="hidden" value="{{session.userid}}" />
+        <input type="hidden" name="user_id" value="{{session.userid}}" />
 
         <div class="auth__row">
             <div class="auth__form-group auth__form-group--register">
@@ -51,8 +52,8 @@
 
         <div class="imageupload">
             <label class="auth__label">Add ultil 5 images</label>
-            <label class="imageupload__label" for="images">+</label>
-            <input class="imageupload__input" id="images" name="images" type="file" accept="image/*" multiple>
+            <label class="imageupload__label" for="images">+</label><!-- multiple -->
+            <input class="imageupload__input" id="images" name="images" multiple type="file" accept="image/*" />
         </div>
 
         <div id="preview"></div>
@@ -66,29 +67,29 @@
 
 <script>
     const preview = document.getElementById('preview');
-    preview.innerHTML = '';
-    let index = 0;
-    document.getElementById('images').addEventListener('change',
-        function (event) {
-            if(index >= 5)
-            {
-                alert('Max number of images achieved')
-                return;
-            }
-
-            const files = event.target.files;
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.style.maxWidth = '150px';
-                    img.style.margin = '5px';
-                    preview.appendChild(img);
-                    index++;
-                };
-                reader.readAsDataURL(file);
-            }
-        }); 
+    const imageInput = document.getElementById('images');
+    const imageFiles = [];
+    imageInput.addEventListener('change', function (event) {
+        const files = event.target.files;
+        if (files.length + imageFiles.length > 5) {
+            alert('Max number of images achieved');
+            return;
+        }
+        for (let i = 0; i < files.length; i++) {
+            imageFiles.push(files[i]);
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '150px';
+                img.style.margin = '5px';
+                preview.appendChild(img);
+            }; 
+            reader.readAsDataURL(files[i]);
+        } 
+        // Criar um novo DataTransfer para adicionar todos os arquivos 
+        const dataTransfer = new DataTransfer(); 
+        imageFiles.forEach(file => dataTransfer.items.add(file)); 
+        imageInput.files = dataTransfer.files;
+    });
 </script>

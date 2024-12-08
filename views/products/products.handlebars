@@ -1,12 +1,17 @@
 <div class="myproducts">
 
+    {{#if empty}}
+        <div class="message">You don't have any products yet. <a class="message__link" href="/products/add">Click here</a> to register products.</div>
+    {{/if}}
+
     <h1 class="myproducts__title">My products</h1>
 
     <ul class="myproducts__container">
         {{#each products}}
         <li class="myproducts__item">
-            <a href="#">
-                <img src="/products/cellphone.jpg" />
+            <a href="/products/detail/{{this.id}}">
+                <img src="/uploads/{{this.image}}" />
+                {{!-- <img src="/uploads/1733507391283.jpg"/> --}}
                 <span class="myproducts__item-title">{{this.product}}</span>
                 <span class="myproducts__item-description">{{this.description}}</span>
                 <span class="myproducts__item-price">R${{this.price}}</span>
@@ -16,3 +21,5 @@
     </ul>
 
 </div>
+
+
