@@ -7,8 +7,8 @@ const upload = require('../helpers/uploadImage')
 
 router.get('/all', ProductsController.all)
 router.get('/add', ProductsController.add)
-router.post('/save', upload.array('images', 5), ProductsController.save)
 router.get('/detail/:id', ProductsController.detail)
-
+router.delete('/delete', ProductsController.delete)
+router.post('/save', upload.array('images', 5), ProductsController.save)
 
 module.exports = router

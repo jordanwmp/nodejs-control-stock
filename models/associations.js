@@ -23,8 +23,8 @@ Supplies.hasMany(Products, { foreignKey: 'supplier_id' })
 Products.belongsTo(Supplies, { foreignKey: 'supplier_id' })
 
 //PRODUCT IMAGE RELATIONSHIP
-Products.hasMany(Images, { foreignKey: 'product_id' })
-Images.belongsTo(Products, { foreignKey: 'product_id' })
+Products.hasMany(Images, { foreignKey: 'product_id', onDelete: 'CASCADE' })
+Images.belongsTo(Products, { foreignKey: 'product_id', onDelete: 'CASCADE' })
 
 //PRODUCT USER RELATIONSHIP
 Users.hasMany(Products, {foreignKey: 'user_id'})

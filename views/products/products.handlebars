@@ -10,10 +10,9 @@
         {{#each products}}
         <li class="myproducts__item">
             <a href="/products/detail/{{this.id}}">
-                <img src="/uploads/{{this.image}}" />
-                {{!-- <img src="/uploads/1733507391283.jpg"/> --}}
+                <div class="product--image" style="background-image: url(/uploads/{{this.image}});"></div>
+                {{!-- <img src="/uploads/{{this.image}}" /> --}}
                 <span class="myproducts__item-title">{{this.product}}</span>
-                <span class="myproducts__item-description">{{this.description}}</span>
                 <span class="myproducts__item-price">R${{this.price}}</span>
             </a>
         </li>

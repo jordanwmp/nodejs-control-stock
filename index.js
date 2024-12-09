@@ -4,11 +4,14 @@ const handlebars = require('handlebars')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
+const methodOverride = require('method-override')
 const connection = require('./db/connection')
 const path = require('path')
 const os = require('os')
 
 const app = express()
+
+app.use(methodOverride('_method'))
 
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')

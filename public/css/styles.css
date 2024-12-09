@@ -174,6 +174,17 @@ a {
 .myproducts .myproducts__item {
     max-width: 250px;
     text-align: center;
+    background-color: #fff;
+    padding: 12px;
+}
+
+.myproducts .myproducts__item .product--image
+{
+    height: 200px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .myproducts .myproducts__item a {
@@ -190,21 +201,29 @@ a {
     max-width: 300px;
 }
 
-.myproducts__item-title,
+.myproducts__item-title
+{
+    font-size: 1em;
+    color: #666;
+}
 .myproducts__item-price {
     color: #292929;
     font-size: 1.5em;
 }
 
-.myproducts__item-description {
+/* .myproducts__item-description {
     font-size: 1em;
     color: #666;
-}
+} */
 
 .myproducts .myproducts__item a:hover .myproducts__item-title {
-    font-size: 1.7em;
+    color: #a3a3a3;
 }
 
+.form--delete
+{
+    display: inline;
+}
 
 /***** CSS FOR REGISTER PRODUCTS *****/
 

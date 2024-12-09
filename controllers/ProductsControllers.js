@@ -6,8 +6,9 @@ const {
     Images
 } = require('../models/associations')
 
+const deleteImage = require('../helpers/deleteImages')
 
-const { Op } = require('sequelize')
+// const { Op } = require('sequelize')
 
 class ProductsController {
 
@@ -95,37 +96,54 @@ class ProductsController {
 
     static async detail(req, res) {
 
-        const productId =  23//req.params.id
-        console.log('P ID ', JSON.stringify(productId))
+        const productId = req.params.id
+        console.log('P ID ', productId, req.params)
 
         try {
             let images = []
             const products = await Products.findOne(
-                { 
-                    where: { id: productId }, 
+                {
+                    where: { id: productId },
                     include: [
                         {
                             model: Images
                         }
                     ],
-                    plain: true 
-            })
-            
+                    plain: true
+                })
+
             const product = products.dataValues
-            console.log('PRODUCT ', product)
-           
-            if (product) { 
+            // console.log('PRODUCT ', product)
+
+            if (product) {
                 // Mapear os objetos de imagens associados ao produto 
-                images = product.Images.map((img) => img.dataValues); 
-                console.log('IMAGES ', images); 
-            } else { 
-                console.log('Product not found'); 
+                images = product.Images.map((img) => img.dataValues);
+                // console.log('IMAGES ', images); 
+            } else {
+                console.log('Product not found');
             }
 
             res.render('products/detail', { product, images })
 
         } catch (error) {
             console.log('Error on get detail page ', error)
+        }
+    }
+
+    static async delete(req, res) {
+        const { id } = req.body
+        try {
+
+            await deleteImage(id)
+
+            await Products.destroy({
+                where: { id: id }
+            })
+            req.flash('message', 'Product deleted successfully')
+            // res.redirect('/products/all')
+            res.render('products/products')
+        } catch (error) {
+            console.log('error on delete product ', error)
         }
     }
 }
