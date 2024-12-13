@@ -1,0 +1,199 @@
+<div class="auth auth__form--register">
+
+    <h1>
+        Edit product
+    </h1>
+
+    <!-- enctype="multipart/form-data" -->
+    <form class="auth__form" action="/products/update?_method=PUT" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="user_id" value="{{session.userid}}" />
+        <input type="hidden" name="id" value="{{product.id}}" />
+        <input type="hidden" id="removedImages" name="removedImages" value=""/>
+
+        <div class="auth__row">
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="product">Product</label>
+                <input value="{{product.product}}" class="auth__input" type="text" id="product" name="product"
+                    placeholder="Enter product name" required />
+            </div>
+
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="price">Price</label>
+                <input value="{{product.price}}" class="auth__input" type="number" id="price" name="price"
+                    placeholder="Price" required />
+            </div>
+        </div>
+
+        <div class="auth__row">
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="price">Category</label>
+                <select class="auth__input" name="category_id">
+                    {{#each categories}}
+                    <option value="{{this.id}}" {{#ifCond this.id '===' ../product.category_id}}selected{{/ifCond}}>
+                        {{this.category}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="price">Supplier</label>
+                <select class="auth__input" name="supplier_id">
+                    {{#each categories}}
+                    <option value="{{this.id}}" {{#ifCond this.id '===' ../product.supplier_id}}selected{{/ifCond}}>
+                        {{this.category}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+
+        <div class="auth__row">
+            <div class="auth__form-group auth__form-group--register">
+                <label class="auth__label" for="description">Description</label>
+                <textarea class="auth__input auth__input--textarea" type="text" id="description" name="description"
+                    placeholder="Description" rows="5" required>{{product.description}}</textarea>
+            </div>
+        </div>
+
+        <div class="imageupload">
+            <label class="auth__label">Ultil 5 images</label>
+            <label class="imageupload__label" for="images">+</label><!-- multiple -->
+            <input class="imageupload__input" id="images" name="images" multiple type="file" accept="image/*" />
+        </div>
+
+        <div id="preview"></div>
+
+        <div class="product__images">
+            <div class="product__images__carousel"></div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--register">
+            Update product
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+    const productImages = {{{ json images }}};
+    console.log('Product images update ', productImages);
+    const preview = document.getElementById('preview');
+    const imageInput = document.getElementById('images');
+    const removedImagesInput = document.getElementById('removedImages');
+    const imageFiles = [];
+
+    // Função para adicionar imagens ao preview e ao input
+    const addImage = (file) => {
+        imageFiles.push(file);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '150px';
+            img.style.margin = '5px';
+            img.dataset.filename = file.name; // Adiciona um identificador único
+
+            const removeButton = document.createElement('button');
+            removeButton.innerHTML = '<i class="bi bi-trash-fill"></i>';
+            removeButton.classList.add('btn', 'btn-danger', 'btn-remove-img');
+            removeButton.addEventListener('click', () => removeImage(file.name));
+
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('container-img');
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(removeButton);
+            preview.appendChild(imgContainer);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    // Adicionar imagens existentes ao carregar a página
+    productImages.forEach(imageUrl => {
+        const fullPath = `/uploads/${imageUrl.image}`;
+        fetch(fullPath)
+            .then(res => res.blob())
+            .then(blob => {
+                const file = new File([blob], imageUrl.image.split('/').pop(), { type: blob.type });
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '150px';
+                    img.style.margin = '5px';
+                    img.dataset.filename = file.name; // Adiciona um identificador único
+
+                    const removeButton = document.createElement('button');
+                    removeButton.innerHTML = '<i class="bi bi-trash-fill"></i>';
+                    removeButton.classList.add('btn', 'btn-danger', 'btn-remove-img');
+                    removeButton.addEventListener('click', () => removeImage(file.name, true));
+
+                    const imgContainer = document.createElement('div');
+                    imgContainer.classList.add('container-img');
+                    imgContainer.appendChild(img);
+                    imgContainer.appendChild(removeButton);
+                    preview.appendChild(imgContainer);
+                };
+                reader.readAsDataURL(file);
+            });
+    });
+
+    imageInput.addEventListener('change', function (event) {
+        const files = event.target.files;
+        if (files.length + imageFiles.length > 5) {
+            alert('Max number of images achieved');
+            return;
+        }
+        for (let i = 0; i < files.length; i++) {
+            addImage(files[i]);
+        }
+        // Criar um novo DataTransfer para adicionar todos os arquivos 
+        const dataTransfer = new DataTransfer();
+        imageFiles.forEach(file => dataTransfer.items.add(file));
+        imageInput.files = dataTransfer.files;
+    });
+
+    // Função para remover imagem
+    const removeImage = (filename, isExisting = false) => {
+        if (isExisting) {
+            // Adicionar a imagem removida ao campo oculto
+            const removedImages = removedImagesInput.value ? removedImagesInput.value.split(',') : [];
+            removedImages.push(filename);
+            removedImagesInput.value = removedImages.join(',');
+        } else {
+            // Remove a imagem do array imageFiles
+            const index = imageFiles.findIndex(file => file.name === filename);
+            if (index !== -1) {
+                imageFiles.splice(index, 1);
+            }
+
+            // Atualiza o input files
+            const dataTransfer = new DataTransfer();
+            imageFiles.forEach(file => dataTransfer.items.add(file));
+            imageInput.files = dataTransfer.files;
+        }
+
+        // Remove a imagem do preview
+        const imgContainers = preview.querySelectorAll('.container-img');
+        imgContainers.forEach(container => {
+            const img = container.querySelector('img');
+            if (img && img.dataset.filename === filename) {
+                preview.removeChild(container);
+            }
+        });
+    };
+
+    // Adicionar evento de clique aos botões de remover
+    preview.addEventListener('click', function (event) {
+        if (event.target.classList.contains('btn-remove-img')) {
+            const filename = event.target.dataset.filename;
+            removeImage(filename, true);
+        }
+    });
+});
+
+
+    
+</script>

@@ -7,8 +7,7 @@ const {
 } = require('../models/associations')
 
 const deleteImage = require('../helpers/deleteImages')
-
-// const { Op } = require('sequelize')
+const updateImage = require('../helpers/updateImages')
 
 class ProductsController {
 
@@ -127,6 +126,78 @@ class ProductsController {
 
         } catch (error) {
             console.log('Error on get detail page ', error)
+        }
+    }
+
+    static async edit(req, res) {
+        const id = req.params.id
+        try {
+            const paramns = {
+                where: { id: id },
+                include: [
+                    {
+                        model: Images
+                    }
+                ],
+                plain: true
+            }
+
+            let images = []
+            const product = (await Products.findOne(paramns)).dataValues
+
+            console.log('PRODUCTS FOR EDIT ', product)
+
+            if (product) {
+                images = product.Images.map(img => img.dataValues)
+                console.log('IMAGES ', images)
+            } else {
+                console.log('empty images for edit product')
+            }
+
+            const suppliers = (await Supplies.findAll()).map(sup => sup.get({ plain: true }))
+            const categories = (await Categories.findAll()).map(cat => cat.get({ plain: true }))
+
+            console.log('SUPPLIERS ', suppliers)
+            console.log('CATEGORIES ', categories)
+
+            res.render('products/edit', { product, images, suppliers, categories })
+
+        } catch (error) {
+            console.log('Erro on get product to edit page ', error)
+        }
+    }
+
+    static async update(req, res) {
+        console.log('BODY ', req.body)
+        console.log('FILES ', req.files)
+        const { id, product, description, price, category_id, supplier_id, user_id, removedImages } = req.body
+        const files = req.files
+        if(!id) return
+        try {
+            const productUpdate = {
+                product,
+                description,
+                price,
+                category_id,
+                supplier_id,
+                user_id
+            }
+            await Products.update(productUpdate, { where: { id: id } })
+            .then(()=>{
+                console.log('It will update images on database')
+                updateImage(id, files, removedImages)
+            })
+            .then(()=>{
+                req.flash('message', 'Product updated successfully')
+                req.session.save(()=>{
+                    res.redirect(`/products/detail/${id}`)
+                })
+            })
+            .catch((err)=>[
+                console.log('Error on update product ', err)
+            ])
+        } catch (error) {
+            console.log('Error on update  product ', error)
         }
     }
 

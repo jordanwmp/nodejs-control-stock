@@ -11,7 +11,7 @@
         <span class="price__product">US${{product.price}}</span>
 
         <div class="btn-container">
-            <button class="btn btn-info">Update</button>
+            <a href="/products/edit/{{product.id}}" class="btn btn-info">Update</a>
             <form class="form--delete" method="POST" action="/products/delete?_method=DELETE">
                 <input type="hidden" name="id" value="{{product.id}}" />
                 <button type="submit" class="btn btn-danger">Delete</button>

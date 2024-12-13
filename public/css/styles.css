@@ -114,6 +114,7 @@ a {
 
 .auth__input--textarea {
     height: auto;
+    padding: 10px;
 }
 
 .btn {
@@ -172,7 +173,8 @@ a {
 }
 
 .myproducts .myproducts__item {
-    max-width: 250px;
+    max-width: 200px;
+    width: 100%;
     text-align: center;
     background-color: #fff;
     padding: 12px;
@@ -310,6 +312,23 @@ a {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+/* CSS FOR UPDATE PRODUCT */
+
+.container-img{
+    width: max-content;
+    display: inline-block;
+    position: relative;
+}
+
+.btn-remove-img{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+    padding: 5px;
+    font-size: unset;
 }
 
 /****** CSS FOR FOOTER ******/
