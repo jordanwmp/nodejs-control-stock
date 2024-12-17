@@ -98,8 +98,8 @@ INSERT INTO addresses (street, neighbor, number, city, state, code, idSupply) VA
 ('Rua das Luminárias', 'Centro', '456', 'Rio de Janeiro', 'RJ', '20040-010', 2),
 ('Rua das Fábricas', 'Industrial', '789', 'Belo Horizonte', 'MG', '31270-080', 3);
 
-INSERT INTO products (product, description, price, category_id, supplier_id, createdAt) VALUES 
-('Tapete Luxo', 'Tapete de alta qualidade com textura suave e design elegante, adicionando conforto e estilo ao ambiente.', 800.00, 3, 3, '2024-11-25 12:00:00'),
-('Estante Moderna', 'Estante de madeira com design contemporâneo, ideal para organizar livros e itens decorativos na sala ou escritório.', 1200.00, 1, 1, '2024-11-25 13:00:00'),
-('Abajur de Mesa', 'Abajur de mesa com base metálica e cúpula de tecido, proporcionando iluminação suave para o ambiente.', 150.00, 2, 2, '2024-11-25 14:00:00'),
-('Almofada Decorativa', 'Almofada decorativa com estampas modernas e enchimento confortável, ideal para sofás e camas.', 60.00, 3, 3, '2024-11-25 15:00:00');
+-- INSERT INTO products (product, description, price, category_id, supplier_id, createdAt) VALUES 
+-- ('Tapete Luxo', 'Tapete de alta qualidade com textura suave e design elegante, adicionando conforto e estilo ao ambiente.', 800.00, 3, 3, '2024-11-25 12:00:00'),
+-- ('Estante Moderna', 'Estante de madeira com design contemporâneo, ideal para organizar livros e itens decorativos na sala ou escritório.', 1200.00, 1, 1, '2024-11-25 13:00:00'),
+-- ('Abajur de Mesa', 'Abajur de mesa com base metálica e cúpula de tecido, proporcionando iluminação suave para o ambiente.', 150.00, 2, 2, '2024-11-25 14:00:00'),
+-- ('Almofada Decorativa', 'Almofada decorativa com estampas modernas e enchimento confortável, ideal para sofás e camas.', 60.00, 3, 3, '2024-11-25 15:00:00');
