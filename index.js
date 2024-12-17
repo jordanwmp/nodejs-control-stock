@@ -35,7 +35,6 @@ handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
     }
 });
 
-
 //session middleware config
 const SESSION_CONFIG = {
     name: 'session',
@@ -74,7 +73,8 @@ const UserController = require('./controllers/UserController')
 
 const userRoutes = require('./routers/userRoutes')
 const productsRouters = require('./routers/productsRoutes')
-// app.use('/', UserController.login)
+
+app.get('/', UserController.login)
 app.use('/auth', userRoutes)
 app.use('/products', productsRouters)
 
