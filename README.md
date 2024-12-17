@@ -37,19 +37,19 @@ Node Stock is a straightforward stock management system that allows users to cre
 ## Screenshots
 
 ### Login Page
-![Login Page](screens/login.png)
+![Login Page](screens/login.jpg)
 
 ### Sign Up Page
-![Sign Up Page](screens/signup.png)
+![Sign Up Page](screens/signup.jpg)
 
 ### Product List
-![Product List](screens/productList.png)
+![Product List](screens/productList.jpg)
 
 ### Product Details
-![Product Details](screens/productDetail.png)
+![Product Details](screens/productDetail.jpg)
 
 ### Edit Product
-![Edit Product](screens/editProduct.png)
+![Edit Product](screens/editProduct.jpg)
 
 ## Contact
 
