@@ -77,7 +77,7 @@ class UserController {
             req.session.userId = user.id
             req.flash('message', 'Account created successfully') 
             req.session.save(()=>{
-                res.redirect('/login')
+                res.redirect('/auth/login')
             }) 
         })
         .catch((err)=>{

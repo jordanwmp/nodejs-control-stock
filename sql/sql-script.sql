@@ -77,7 +77,7 @@ CREATE TABLE images (
 );
 
 /* Insert sample data */
-INSERT INTO users (firstname, lastname, password, email, createdAt) VALUES ('Jordan', 'Willian', '1234', 'jordan@node.com', '2024-11-26 16:37:00');
+-- INSERT INTO users (firstname, lastname, password, email, createdAt) VALUES ('', '', '', '', '');
 INSERT INTO categories (category, description, createdAt) VALUES 
 ('Móveis', 'Cadeiras, mesas, sofás, estantes e outros itens de mobília para diversos ambientes da casa.', '2024-01-15 10:30:00'),
 ('Iluminação', 'Luminárias, abajures, pendentes, lustres e outros itens de iluminação para interiores e exteriores.', '2024-02-10 14:45:00'),
