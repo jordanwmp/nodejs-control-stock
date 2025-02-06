@@ -43,8 +43,10 @@ class UserController {
         res.render('auth/register')
     }
 
+    
     static async create(req, res) {
         console.log('entrou em create')
+       
         const { firstname, lastname, email, password, confirmPassword } = req.body
         //password match validation
         if (password != confirmPassword) {

@@ -52,6 +52,7 @@ const SESSION_CONFIG = {
         httpOnly: true
     }
 }
+
 app.use(session(SESSION_CONFIG))
 
 //flash messages
@@ -59,7 +60,7 @@ app.use(flash())
 
 //set session to response
 app.use((req, res, next) => {
-    console.log('sesion', req.session)
+    // console.log('sesion', req.session)
     if(req.session.userid)
     {
         res.locals.session = req.session
