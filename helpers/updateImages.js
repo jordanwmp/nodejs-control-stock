@@ -1,5 +1,4 @@
 const fs = require('fs')
-// const path = require('path')
 
 const deleteLocalImage = require('./deleteLocalImage')
 const createImage = require('./createImage')

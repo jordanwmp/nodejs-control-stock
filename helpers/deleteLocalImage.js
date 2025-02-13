@@ -1,7 +1,7 @@
 const fs =  require('fs')
 const path = require('path')
 
-const deletLocalImage = (imageName) =>{
+const deleteLocalImage = (imageName) =>{
     try {
         const filePath = path.join(__dirname, '../public/uploads', imageName)
         fs.unlink(filePath, (err)=>{
@@ -16,4 +16,4 @@ const deletLocalImage = (imageName) =>{
     }
 }
 
-module.exports = deletLocalImage
+module.exports = deleteLocalImage
