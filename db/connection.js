@@ -4,17 +4,14 @@ const sequelize = new Sequelize(
     'nodestock_test',
     'root',
     '',
-    // process.env.DB_NAME, 
-    // process.env.DB_USER, 
-    // process.env.DB_PASS, 
-    {//// host: process.env.DB_HOST,
-    host: 'localhost',
-    dialect: 'mysql',
-    logging: false,
-})
+    {
+        host: 'localhost',
+        dialect: 'mysql',
+        logging: false,
+    })
 
 try {
-    const con = async () =>{
+    const con = async () => {
         await sequelize.authenticate()
     }
     con()
